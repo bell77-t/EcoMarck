@@ -1,0 +1,3 @@
+import { db, auth } from '../config/firebase.js';
+export async function getProfile(req, res, next) { try { const doc = await db.collection('Users').doc(req.user.uid).get(); if (!doc.exists) return res.status(404).json({ error: 'Perfil no encontrado.' }); res.json(doc.data()); } catch (e) { next(e); } }
+export async function updateProfile(req, res, next) { const nombre = req.body.nombre?.trim(); const foto = req.body.foto?.trim() || ''; if (!nombre) return res.status(400).json({ error: 'El nombre es obligatorio.' }); try { await db.collection('Users').doc(req.user.uid).update({ nombre, foto }); await auth.updateUser(req.user.uid, { displayName: nombre, photoURL: foto || null }); res.json({ message: 'Perfil actualizado.', nombre, foto }); } catch (e) { next(e); } }

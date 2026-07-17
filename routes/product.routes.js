@@ -1,0 +1,2 @@
+import { Router } from 'express'; import * as controller from '../controller/product.controller.js'; import { requireAuth } from '../middleware/auth.js';
+const router = Router(); router.get('/', controller.listProducts); router.get('/:id', controller.getProduct); router.post('/', requireAuth, controller.createProduct); router.put('/:id', requireAuth, controller.updateProduct); router.delete('/:id', requireAuth, controller.deleteProduct); export default router;

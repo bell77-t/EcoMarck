@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis productos | EcoMarket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet"><link href="../assets/css/catalog.css" rel="stylesheet">
+</head>
+<body>
+  <div data-navbar></div>
+  <main>
+    <header class="page-header"><div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3"><div><p class="eyebrow">Tu espacio de venta</p><h1 class="section-title">Mis productos</h1><p class="mb-0">Administra tus publicaciones y mantenlas actualizadas.</p></div><a class="btn btn-eco" href="create-product.html"><i class="bi bi-plus-lg"></i> Nuevo producto</a></div></header>
+    <section class="container py-5"><div class="my-products-summary"><span class="summary-icon"><i class="bi bi-box-seam"></i></span><div><strong id="productCount">Cargando...</strong><small>visibles en EcoMarket</small></div></div><div id="myProducts" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 mt-1"></div></section>
+  </main>
+  <div data-footer></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script type="module" src="../assets/js/app.js"></script><script type="module" src="../assets/js/my-products.js"></script>
+</body>
+</html>

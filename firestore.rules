@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /Products/{productId} {
+      allow read: if true;
+      allow create: if request.auth != null && validProduct(request.resource.data) && request.resource.data.ownerId == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.ownerId == request.auth.uid && validProduct(request.resource.data);
+    }
+
+    match /Users/{userId} {
+      allow read, create: if request.auth != null && request.auth.uid == userId && request.resource.data.id == userId;
+      allow update: if request.auth != null && request.auth.uid == userId && resource.data.id == userId;
+    }
+
+    match /Carts/{cartId} {
+      allow read, write: if request.auth != null && request.auth.uid == cartId && validCart(request.resource.data);
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+function validProduct(data) {
+  return data is map
+    && data.nombre is string
+    && data.descripcion is string
+    && data.categoria is string
+    && data.precio is number
+    && data.precio >= 0
+    && data.imagen is string
+    && data.ownerId is string;
+}
+
+function validCart(data) {
+  return data is map
+    && data.ownerId is string
+    && data.items is list;
+}
