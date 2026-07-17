@@ -1,4 +1,4 @@
-export const API = 'https://ecomarck.onrender.com/api';
+export const API = '/api';
 export const placeholder = 'https://placehold.co/800x600/e7f3e8/2e7d32?text=EcoMarket';
 
 export const token = () => localStorage.getItem('ecoToken');
@@ -58,7 +58,4 @@ export function footer() {
 }
 
 document.addEventListener('DOMContentLoaded', () => { navbar(); footer(); updateCartCount(); });
-<<<<<<< HEAD
-=======
  
->>>>>>> 3e05462 (Actualizar API a https://ecomarck.onrender.com/api)
